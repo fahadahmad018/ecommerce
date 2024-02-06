@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrataion form</title>
+  <link href="{% static 'authcart/css/signup.css' %}" rel="stylesheet" />
+</head>
+<body>
+  
+  <section class="formContainer">
+    <h1>Registration Form</h1>
+    <form action="{% url 'signup' %}" method='post' > {% csrf_token %}
+      <div class="form-group">
+        <input type="text" class="inputcontrol" placeholder="Username" id='username' name='username'>
+  
+      </div>
+
+      <div class="form-group">
+        <input type="email" class="inputcontrol" placeholder="Email" id='email'  name='email'>
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="inputcontrol" placeholder="password" id='pass1' name='pass1'>
+      </div>
+      <div class="form-group">
+        <input type="password" class="inputcontrol" placeholder=" Confirm password" id='pass2' name='pass2'>
+      </div>
+
+      <div class="form-group">
+        <div class="radioButton">
+        <div class="input-name">
+          <input type="radio" name="radiogroup1" id="male" class="radio-button" checked="">
+          <label for="male" class="emoployed"><span>Male</span></label>
+          <input type="radio" name="radiogroup1" id="female" class="radio-button">
+          <label for="female" class="emoployed"><span>Female</span></label>
+        </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="checkBox">
+          <label class="checkcont" for="">I agree with Terms and conditions
+            <input type="checkbox" >
+            <span class="checkmark"></span>
+           </label>
+        </div>
+      </div>
+      {% for message in messages %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+       <strong>{{messages.tag}}</strong> {{message}}
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+      </div>
+     {% endfor %}
+
+      <div class="form-group">
+        <button class="button" type="submit">Register Now</button>
+      </div>
+      <span class="login">Alreaddy have account?
+        <label for="check"><a href="{% url 'login' %}">Login</a></label>
+    </span>
+
+    </form>
+  </section>
+</body>
+</html>
